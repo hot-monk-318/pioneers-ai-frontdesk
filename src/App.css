@@ -1,38 +1,738 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  background: #f3f6fb;
+  color: #1c2433;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 24px;
+}
+
+.app-header {
+  max-width: 900px;
+  margin: 0 auto 12px auto;
+}
+
+.brand-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1f3d77;
+}
+
+.tab-bar {
+  max-width: 900px;
+  margin: 0 auto 16px auto;
   display: flex;
-  flex-direction: column;
+  gap: 8px;
+}
+
+.tab-bar button {
+  border: 1px solid #c8d3e6;
+  background: white;
+  color: #2a3853;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-bar button.active {
+  background: #3069f0;
+  color: #fff;
+  border-color: #3069f0;
+}
+
+.badge {
+  min-width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #d93025;
+  color: #fff;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0 5px;
+}
+
+.badge-zero {
+  background: #8a98b5;
+}
+
+.panel {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #dbe4f3;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(23, 45, 90, 0.08);
+  padding: 20px;
+}
+
+.panel h1 {
+  margin: 0 0 6px 0;
+}
+
+.subtitle {
+  margin: 0 0 16px 0;
+  color: #62708b;
+}
+
+.chat-window {
+  min-height: 300px;
+  max-height: 480px;
+  overflow-y: auto;
+  border: 1px solid #dbe4f3;
+  border-radius: 12px;
+  padding: 14px;
+  background: #f9fbff;
+}
+
+.message {
+  max-width: 80%;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.message p {
+  margin: 4px 0 0 0;
+  line-height: 1.4;
+}
+
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol {
+  margin: 4px 0;
+  line-height: 1.45;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 20px;
+}
+
+.message.user {
+  margin-left: auto;
+  background: #3069f0;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.message.assistant {
+  margin-right: auto;
+  background: white;
+  border: 1px solid #dbe4f3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.role-label {
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.chat-input-row {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input-row input {
+  flex: 1;
+  border: 1px solid #c9d7ef;
+  border-radius: 10px;
+  padding: 11px 12px;
+  font-size: 15px;
+}
+
+.chat-input-row button {
+  border: none;
+  background: #3069f0;
+  color: white;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.chat-input-row button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error-text {
+  margin: 10px 0 0 0;
+  color: #b3261e;
+}
+
+.operator-card {
+  border: 1px dashed #adc1e5;
+  border-radius: 10px;
+  padding: 14px;
+  background: #f7faff;
+}
+
+.operator-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.operator-card h2 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.flagged-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.flagged-list li {
+  border: 1px solid #d7e2f5;
+  border-radius: 8px;
+  padding: 10px;
+  background: #ffffff;
+  display: grid;
+  gap: 6px;
+}
+
+.unresolved-item {
+  border-color: #ef9a9a !important;
+  background: #fff5f5 !important;
+  border-left: 5px solid #d93025 !important;
+}
+
+.resolved-item {
+  border-color: #9dd6b3 !important;
+  background: #f2fff6 !important;
+  border-left: 5px solid #188038 !important;
+}
+
+.flagged-question {
+  margin: 0 0 4px 0;
+  font-weight: 600;
+}
+
+.flagged-list span {
+  color: #5f6d88;
+  font-size: 12px;
+}
+
+.item-timestamp {
+  font-weight: 600;
+}
+
+.resolve-btn {
+  justify-self: start;
+  border: 1px solid #b9caea;
+  background: #eff5ff;
+  color: #1f3f80;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.resolve-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.resolution-row {
+  display: grid;
+  gap: 6px;
+}
+
+.resolution-row span {
+  font-size: 12px;
+  color: #405172;
+  font-weight: 700;
+}
+
+.resolution-row textarea {
+  width: 100%;
+  border: 1px solid #c9d7ef;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.resolution-row select {
+  width: fit-content;
+  min-width: 240px;
+  max-width: 100%;
+  border: 1px solid #c9d7ef;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  background: #fff;
+}
+
+.flagged-actions {
+  display: grid;
+  gap: 6px;
+}
+
+.save-btn {
+  justify-self: start;
+  border: 1px solid #adc8f5;
+  background: #eef5ff;
+  color: #21447f;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.reopen-btn {
+  justify-self: start;
+  border: 1px solid #9fc5b0;
+  background: #eaf8ef;
+  color: #235739;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.saved-resolution {
+  margin: 0;
+  color: #2f4f86;
+  font-size: 12px;
+}
+
+.resolved-list-wrap {
+  margin-top: 14px;
+}
+
+.resolved-list-wrap h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+.policy-editor {
+  display: grid;
+  gap: 10px;
+}
+
+.policy-row {
+  display: grid;
+  gap: 6px;
+}
+
+.policy-row span {
+  font-size: 12px;
+  color: #405172;
+  font-weight: 700;
+}
+
+.policy-row textarea {
+  width: 100%;
+  border: 1px solid #c9d7ef;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.knowledge-base {
+  margin: 0;
+  border: 1px solid #d7e2f5;
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px;
+  max-height: 240px;
+  overflow: auto;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .App {
+    padding: 12px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .brand-title {
+    font-size: 18px;
+  }
+
+  .tab-bar {
+    flex-wrap: wrap;
+  }
+
+  .tab-bar button {
+    flex: 1 1 calc(50% - 6px);
+    justify-content: center;
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  .panel {
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .panel h1 {
+    font-size: 20px;
+  }
+
+  .chat-window {
+    min-height: 260px;
+    max-height: 380px;
+    padding: 10px;
+  }
+
+  .message {
+    max-width: 92%;
+    padding: 8px 10px;
+  }
+
+  .chat-input-row {
+    flex-direction: column;
+  }
+
+  .chat-input-row input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .chat-input-row button {
+    width: 100%;
+    height: 40px;
+  }
+
+  /* Ensure operator panels stack and selects expand on small screens */
+  .operator-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resolution-row select {
+    width: 100%;
+    min-width: 0;
+    font-size: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .resolution-row select option {
+    font-size: 15px;
+  }
+}
+
+/* Tighten layout specifically for small phones (e.g. iPhone 8/SE/12 mini at 375px) */
+@media (max-width: 375px) {
+  .App {
+    padding: 10px;
+  }
+
+  .panel {
+    max-width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .tab-bar {
+    gap: 6px;
+  }
+
+  .tab-bar button {
+    flex: 1 1 100%;
+    justify-content: center;
+    padding: 8px 8px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  .badge {
+    min-width: 16px;
+    height: 16px;
+    font-size: 10px;
+    padding: 0 6px;
+  }
+
+  .chat-window {
+    min-height: 200px;
+    max-height: 360px;
+    padding: 8px;
+  }
+
+  .message {
+    max-width: 100%;
+    padding: 8px 10px;
+    border-radius: 10px;
+    word-break: break-word;
+  }
+
+  .message.user {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .role-label {
+    font-size: 11px;
+  }
+
+  .chat-input-row {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .chat-input-row input {
+    width: auto;
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  .chat-input-row button {
+    width: auto;
+    height: 40px;
+    padding: 8px 12px;
+    border-radius: 8px;
+  }
+
+  .operator-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .operator-card {
+    padding: 10px;
+  }
+
+  .policy-row textarea,
+  .resolution-row textarea,
+  .resolution-row select {
+    font-size: 14px;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .resolution-row select {
+    min-width: 0;
+  }
+
+  .resolve-btn,
+  .save-btn,
+  .reopen-btn {
+    width: 100%;
+  }
+
+  .flagged-list li {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  /* Prevent dropdowns from being clipped and make controls touch-friendly */
+  .operator-card,
+  .flagged-list,
+  .flagged-list li,
+  .policy-editor {
+    overflow: visible;
+  }
+
+  .resolution-row,
+  .policy-row {
+    position: relative;
+    z-index: 0;
+  }
+
+  .resolution-row select {
+    -webkit-appearance: menulist-button;
+    appearance: menulist-button;
+    font-size: 16px;
+    line-height: 1.2;
+    padding: 10px 12px;
+    min-height: 44px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .resolution-row select:focus {
+    z-index: 9999;
+    position: relative;
+  }
+
+  .resolution-row textarea,
+  .policy-row textarea {
+    min-height: 64px;
+    font-size: 15px;
+    line-height: 1.3;
+    resize: vertical;
+  }
+
+  /* Make dropdown options larger and easier to tap/click */
+  .resolution-row select option {
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 8px 10px;
+  }
+
+  /* For browsers that ignore option padding, increase select line-height */
+  .resolution-row select {
+    line-height: 1.8;
+  }
+
+  /* Custom select styles */
+  .custom-select {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .custom-select-button {
+    width: 100%;
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 16px;
+    line-height: 1.4;
+    border-radius: 8px;
+    border: 1px solid #c9d7ef;
+    background: #fff;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    box-sizing: border-box;
+  }
+
+  .custom-select-caret {
+    opacity: 0.7;
+    font-size: 14px;
+  }
+
+  .custom-select-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 6px 0 0 0;
+    padding: 6px;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #d7e2f5;
+    box-shadow: 0 8px 18px rgba(23, 45, 90, 0.12);
+    border-radius: 8px;
+    max-height: 220px;
+    overflow: auto;
+    z-index: 9999;
+    box-sizing: border-box;
+  }
+
+  .custom-select-item {
+    padding: 10px 12px;
+    font-size: 16px;
+    line-height: 1.4;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+
+  .custom-select-item:hover,
+  .custom-select-item.selected {
+    background: #f0f6ff;
+  }
+
+  /* Reduce spacing and remove internal scrollbars so dashboard fits on small viewports */
+  .panel {
+    padding: 10px;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .operator-grid {
+    gap: 8px;
+    grid-auto-rows: min-content;
+  }
+
+  .flagged-list {
+    max-height: none;
+    overflow: visible;
+    gap: 6px;
+  }
+
+  .flagged-list li {
+    padding: 8px;
+    margin: 0;
+  }
+
+  .policy-editor {
+    gap: 8px;
+  }
+
+  .policy-row textarea,
+  .resolution-row textarea {
+    min-height: 48px;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .knowledge-base {
+    max-height: none;
+    overflow: visible;
+    font-size: 12px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  /* Ensure lists, editor, and knowledge base do not overflow dashboard */
+  .operator-card,
+  .operator-grid,
+  .flagged-list,
+  .flagged-list li,
+  .policy-editor,
+  .policy-row,
+  .resolution-row,
+  .knowledge-base {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .flagged-question {
+    display: block;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Make pre (knowledge-base) wrap rather than overflow horizontally */
+  .knowledge-base {
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-x: hidden;
+  }
+
+  /* Ensure select dropdowns use native scrolling, but don't push layout */
+  .resolution-row select,
+  .resolution-row textarea {
+    max-width: 100%;
+  }
+
+  .resolution-row select option {
+    font-size: 15px;
+  }
+
+  .knowledge-base {
+    font-size: 12px;
   }
 }

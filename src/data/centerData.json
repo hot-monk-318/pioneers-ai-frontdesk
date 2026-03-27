@@ -1,0 +1,20 @@
+{
+  "center": {
+    "name": "Pioneers Learning Center",
+    "location": "Raleigh, NC",
+    "hours": "Monday-Friday 7:00 AM - 6:00 PM",
+    "phone": "919-555-0123"
+  },
+  "policies": {
+    "holidays": "We are closed on major federal holidays including Veterans Day, Thanksgiving, Christmas, and New Year's Day",
+    "sick_child": "Children with fever above 100.4°F must stay home for 24 hours after fever breaks without medication",
+    "tuition": {
+      "infant": "$1,800/month (6 weeks - 12 months)",
+      "toddler": "$1,500/month (1-2 years)",
+      "preschool": "$1,200/month (3-5 years)"
+    },
+    "lunch": "We provide lunch daily for $8/day, ordered by 9 AM",
+    "tours": "Schedule tours Monday-Friday 9 AM-11 AM by calling us or through our website",
+    "late_pickup": "Late pickup fee of $15 per 15 minutes after 6 PM"
+  }
+}

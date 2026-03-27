@@ -7,17 +7,25 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
+    "concurrently": "^9.2.1",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "react-markdown": "^10.1.0",
     "react-scripts": "5.0.1",
+    "remark-gfm": "^4.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"npm:server\" \"react-scripts start\"",
+    "client": "react-scripts start",
+    "server": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:8787",
   "eslintConfig": {
     "extends": [
       "react-app",
